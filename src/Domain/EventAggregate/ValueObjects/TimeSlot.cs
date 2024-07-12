@@ -1,6 +1,6 @@
 ﻿using Domain.EventAggregate.Errors;
 using Domain.EventAggregate.Exceptions;
-using Functional.ErrorOrModad;
+using Functional;
 
 namespace Domain.EventAggregate.ValueObjects;
 
@@ -14,7 +14,7 @@ public class TimeSlot
             ? new TimeSlot(from, to)
             : throw new TimeSlotExceptions.InvalidTimeRangeException();
 
-    public static ErrorOr<TimeSlot> SafeCreate(DateTime from, DateTime to) =>
+    public static Functional.ErrorOrMonad.ErrorOr<TimeSlot> SafeCreate(DateTime from, DateTime to) =>
         from < to
             ? new TimeSlot(from, to)
             : TimeSlotErrors.InvalidTimeRange;

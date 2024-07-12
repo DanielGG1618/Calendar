@@ -1,4 +1,4 @@
-﻿namespace Functional.ErrorOrModad;
+﻿namespace Functional.ErrorOrMonad;
 
 public readonly partial record struct ErrorOr<TValue>
 {

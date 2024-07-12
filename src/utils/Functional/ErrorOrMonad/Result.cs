@@ -1,4 +1,4 @@
-﻿namespace Functional.Results;
+﻿namespace Functional.ErrorOrMonad;
 
 public static class Result
 {

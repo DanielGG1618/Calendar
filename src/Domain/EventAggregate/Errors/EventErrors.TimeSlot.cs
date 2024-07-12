@@ -1,4 +1,5 @@
-﻿using Functional.Errors;
+﻿using Functional;
+using Functional.ErrorOrMonad;
 
 namespace Domain.EventAggregate.Errors;
 
