@@ -1,4 +1,4 @@
-﻿namespace ErrorOr.Errors;
+﻿namespace Functional.Errors;
 
 public enum ErrorType
 {

@@ -1,58 +1,58 @@
-﻿namespace ErrorOr.Errors;
+﻿namespace Functional.Errors;
 
-public readonly record struct Error
+public readonly record struct ErrorDetails
 {
     public string Code { get; }
     public string Description { get; }
     public ErrorType Type { get; }
     public Dictionary<string, object> Metadata { get; }
 
-    private Error(string code, string description, ErrorType type, Dictionary<string, object> metadata) =>
+    private ErrorDetails(string code, string description, ErrorType type, Dictionary<string, object> metadata) =>
         (Code, Description, Type, Metadata) = (code, description, type, metadata);
 
-    public static Error Failure(
+    public static ErrorDetails Failure(
         string code = "General.Failure",
         string description = "A failure has occurred.",
         Dictionary<string, object>? metadata = null
     ) => new(code, description, ErrorType.Failure, metadata ?? []);
 
-    public static Error Unexpected(
+    public static ErrorDetails Unexpected(
         string code = "General.Unexpected",
         string description = "An unexpected error has occurred.",
         Dictionary<string, object>? metadata = null
     ) => new(code, description, ErrorType.Unexpected, metadata ?? []);
 
-    public static Error Validation(
+    public static ErrorDetails Validation(
         string code = "General.Validation",
         string description = "A validation error has occurred.",
         Dictionary<string, object>? metadata = null
     ) => new(code, description, ErrorType.Validation, metadata ?? []);
 
-    public static Error Conflict(
+    public static ErrorDetails Conflict(
         string code = "General.Conflict",
         string description = "A conflict error has occurred.",
         Dictionary<string, object>? metadata = null
     ) => new(code, description, ErrorType.Conflict, metadata ?? []);
 
-    public static Error NotFound(
+    public static ErrorDetails NotFound(
         string code = "General.NotFound",
         string description = "A 'Not Found' error has occurred.",
         Dictionary<string, object>? metadata = null
     ) => new(code, description, ErrorType.NotFound, metadata ?? []);
 
-    public static Error Unauthorized(
+    public static ErrorDetails Unauthorized(
         string code = "General.Unauthorized",
         string description = "An 'Unauthorized' error has occurred.",
         Dictionary<string, object>? metadata = null
     ) => new(code, description, ErrorType.Unauthorized, metadata ?? []);
     
-    public static Error Forbidden(
+    public static ErrorDetails Forbidden(
         string code = "General.Forbidden",
         string description = "A 'Forbidden' error has occurred.",
         Dictionary<string, object>? metadata = null
     ) => new(code, description, ErrorType.Forbidden, metadata ?? []);
 
-    public bool Equals(Error other) =>
+    public bool Equals(ErrorDetails other) =>
         Type == other.Type 
         && Code == other.Code 
         && Description == other.Description 

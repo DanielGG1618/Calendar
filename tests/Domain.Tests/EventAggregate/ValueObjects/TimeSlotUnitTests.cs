@@ -1,24 +1,11 @@
-﻿using Domain.Tests.EventAggregate.Errors;
-using Domain.Tests.EventAggregate.Exceptions;
-using ErrorOr.ErrorOr;
+﻿using Domain.EventAggregate.Errors;
+using Domain.EventAggregate.Exceptions;
+using Domain.EventAggregate.ValueObjects;
 
 namespace Domain.Tests.EventAggregate.ValueObjects;
 
 public class TimeSlotUnitTests
 {
-    [Fact]
-    public void ShouldThrowInvalidTimeRangeException_WhenCreateWithFromEqualsToTo()
-    {
-        //Arrange
-        var fromAndTo = DateTime.Now;
-
-        //Act
-        var createTimeSlot = () => TimeSlot.Create(fromAndTo, fromAndTo);
-        
-        //Assert
-        createTimeSlot.Should().ThrowExactly<EventExceptions.TimeSlot.InvalidTimeRangeException>();
-    }
-    
     [Fact]
     public void ShouldCreateTimeSlot_WhenFromIsBeforeTo()
     {
@@ -35,6 +22,33 @@ public class TimeSlotUnitTests
     }
     
     [Fact]
+    public void ShouldThrowInvalidTimeRangeException_WhenCreateWithFromEqualsToTo()
+    {
+        //Arrange
+        var fromAndTo = DateTime.Now;
+
+        //Act
+        var createTimeSlot = () => TimeSlot.Create(fromAndTo, fromAndTo);
+        
+        //Assert
+        createTimeSlot.Should().ThrowExactly<TimeSlotExceptions.InvalidTimeRangeException>();
+    }
+    
+    [Fact]
+    public void ShouldThrowInvalidTimeRangeException_WhenCreateWithFromAfterTo()
+    {
+        //Arrange
+        var from = DateTime.Now;
+        var to = from.AddHours(-1);
+
+        //Act
+        var createTimeSlot = () => TimeSlot.Create(from, to);
+        
+        //Assert
+        createTimeSlot.Should().ThrowExactly<TimeSlotExceptions.InvalidTimeRangeException>();
+    }
+    
+    [Fact]
     public void ShouldReturnInvalidTimeRangeError_WhenSafeCreateWithFromEqualsToTo()
     {
         //Arrange
@@ -45,23 +59,21 @@ public class TimeSlotUnitTests
         
         //Assert
         errorOrTimeSlot.IsError.Should().BeTrue();
-        errorOrTimeSlot.Errors.Should().Contain(error => error.Code == EventErrors.TimeSlot.InvalidTimeRange.Code);
+        errorOrTimeSlot.Errors.Should().Contain(error => error.Code == TimeSlotErrors.InvalidTimeRange.Code);
     }
-}
-
-public class TimeSlot
-{
-    public DateTime From { get; }
-    public DateTime To { get; }
-
-    public static TimeSlot Create(DateTime from, DateTime to) =>
-        from < to ? new(from, to) 
-            : throw new EventExceptions.TimeSlot.InvalidTimeRangeException();
     
-    private TimeSlot(DateTime from, DateTime to) => (From, To) = (from, to);
-
-    public static ErrorOr<TimeSlot> SafeCreate(DateTime from, DateTime to)
+    [Fact]
+    public void ShouldReturnInvalidTimeRangeError_WhenSafeCreateWithFromAfterTo()
     {
-        throw new NotImplementedException();
+        //Arrange
+        var from = DateTime.Now;
+        var to = from.AddHours(-1);
+
+        //Act
+        var errorOrTimeSlot = TimeSlot.SafeCreate(from, to);
+        
+        //Assert
+        errorOrTimeSlot.IsError.Should().BeTrue();
+        errorOrTimeSlot.Errors.Should().Contain(error => error.Code == TimeSlotErrors.InvalidTimeRange.Code);
     }
 }

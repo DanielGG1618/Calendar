@@ -1,6 +1,6 @@
-﻿namespace ErrorOr.Results;
+﻿namespace Functional.Results;
 
-public class Result
+public static class Result
 {
     public static Success Success { get; } = new();
     public static Updated Updated { get; } = new();

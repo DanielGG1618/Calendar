@@ -22,7 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\utils\ErrorOr\ErrorOr.csproj" />
+      <ProjectReference Include="..\..\src\Domain\Domain.csproj" />
+      <ProjectReference Include="..\..\src\utils\Functional\Functional.csproj" />
     </ItemGroup>
 
 </Project>
