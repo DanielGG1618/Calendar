@@ -5,12 +5,16 @@ root = true
 [*.cs]
 
 # Disable sonar analyzer Nested types should not be visible
+dotnet_diagnostic.CA1000.severity = none
 dotnet_diagnostic.CA1034.severity = none
 dotnet_diagnostic.CA1062.severity = none
 dotnet_diagnostic.CA2225.severity = none
 dotnet_diagnostic.CA1002.severity = none
 dotnet_diagnostic.CA1032.severity = none
 dotnet_diagnostic.CA1707.severity = none
+dotnet_diagnostic.CA1711.severity = none
+dotnet_diagnostic.S3358.severity = none
+dotnet_diagnostic.S4035.severity = none
 
 #### Core EditorConfig Options ####
 

@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{2BB82B67
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functional.Tests", "tests\utils\Functional.Tests\Functional.Tests.csproj", "{CBA3ADDB-A00B-4560-B257-279D4236DCFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentAssertions.Extensions", "src\utils\FluentAssertions.Extensions\FluentAssertions.Extensions.csproj", "{1B199605-FF36-4613-B685-E43442E81B2B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{CBA3ADDB-A00B-4560-B257-279D4236DCFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBA3ADDB-A00B-4560-B257-279D4236DCFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBA3ADDB-A00B-4560-B257-279D4236DCFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B199605-FF36-4613-B685-E43442E81B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B199605-FF36-4613-B685-E43442E81B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B199605-FF36-4613-B685-E43442E81B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B199605-FF36-4613-B685-E43442E81B2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{35FA2275-2A93-45E3-ADAE-2DEC67CF7D8D} = {CD64BC52-B3F4-436E-A2D1-C671CF61861A}
@@ -46,5 +52,6 @@ Global
 		{E3BFABAA-1155-488B-AB22-E50E4D775869} = {AABD1A83-098E-423C-B917-8FAEAA35855F}
 		{2BB82B67-7984-40E7-81FA-5865BC0DC464} = {CD64BC52-B3F4-436E-A2D1-C671CF61861A}
 		{CBA3ADDB-A00B-4560-B257-279D4236DCFD} = {2BB82B67-7984-40E7-81FA-5865BC0DC464}
+		{1B199605-FF36-4613-B685-E43442E81B2B} = {E3BFABAA-1155-488B-AB22-E50E4D775869}
 	EndGlobalSection
 EndGlobal

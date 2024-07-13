@@ -1,6 +1,4 @@
-﻿using Functional.ErrorOrMonad;
-
-namespace Functional.Tests.ErrorOrMonad;
+﻿namespace Functional.Tests.ErrorOrMonad;
 
 public class ErrorOrTests
 {

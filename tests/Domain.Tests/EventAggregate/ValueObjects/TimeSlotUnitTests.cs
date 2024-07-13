@@ -1,5 +1,4 @@
 ﻿using Domain.EventAggregate.Errors;
-using Domain.EventAggregate.Exceptions;
 using Domain.EventAggregate.ValueObjects;
 
 namespace Domain.Tests.EventAggregate.ValueObjects;
@@ -22,7 +21,7 @@ public class TimeSlotUnitTests
     }
     
     [Fact]
-    public void ShouldThrowInvalidTimeRangeException_WhenCreateWithFromEqualsToTo()
+    public void ShouldThrowArgumentExceptionWithDescription_WhenCreateWithFromEqualsToTo()
     {
         //Arrange
         var fromAndTo = DateTime.Now;
@@ -31,11 +30,12 @@ public class TimeSlotUnitTests
         var createTimeSlot = () => TimeSlot.Create(fromAndTo, fromAndTo);
         
         //Assert
-        createTimeSlot.Should().ThrowExactly<TimeSlotExceptions.InvalidTimeRangeException>();
+        createTimeSlot.Should().ThrowExactly<ArgumentException>()
+            .WithMessage(TimeSlotErrors.InvalidTimeRange.Description);
     }
     
     [Fact]
-    public void ShouldThrowInvalidTimeRangeException_WhenCreateWithFromAfterTo()
+    public void ShouldThrowArgumentExceptionWithDescription_WhenCreateWithFromAfterTo()
     {
         //Arrange
         var from = DateTime.Now;
@@ -45,7 +45,8 @@ public class TimeSlotUnitTests
         var createTimeSlot = () => TimeSlot.Create(from, to);
         
         //Assert
-        createTimeSlot.Should().ThrowExactly<TimeSlotExceptions.InvalidTimeRangeException>();
+        createTimeSlot.Should().ThrowExactly<ArgumentException>()
+            .WithMessage(TimeSlotErrors.InvalidTimeRange.Description);
     }
     
     [Fact]

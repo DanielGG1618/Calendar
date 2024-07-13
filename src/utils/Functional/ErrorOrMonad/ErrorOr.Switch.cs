@@ -2,7 +2,7 @@
 
 public readonly partial record struct ErrorOr<TValue>
 {
-    public void Switch(Action<TValue> onValue, Action<IList<ErrorDetails>> onError)
+    public void Switch(Action<TValue> onValue, Action<ErrorsCollection> onError)
     {
         if (_value is not null)
             onValue(_value);
@@ -10,7 +10,7 @@ public readonly partial record struct ErrorOr<TValue>
             onError(_errors);
     }
 
-    public Task Switch(Func<TValue, Task> onValue, Func<IList<ErrorDetails>, Task> onError) => 
+    public Task Switch(Func<TValue, Task> onValue, Func<ErrorsCollection, Task> onError) => 
         _value is not null 
             ? onValue(_value) 
             : onError(_errors);
@@ -20,11 +20,11 @@ public readonly partial record struct ErrorOr<TValue>
         if (_value is not null)
             onValue(_value);
         else
-            onError(_errors[0]);
+            onError(_errors.First);
     }
 
     public Task SwitchFirst(Func<TValue, Task> onValue, Func<ErrorDetails, Task> onError) =>
         _value is not null
             ? onValue(_value)
-            : onError(_errors[0]);
+            : onError(_errors.First);
 }

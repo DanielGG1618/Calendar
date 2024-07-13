@@ -1,7 +1,4 @@
-﻿using Functional;
-using Functional.ErrorOrMonad;
-
-namespace Domain.EventAggregate.Errors;
+﻿namespace Domain.EventAggregate.Errors;
 
 public static class TimeSlotErrors
 {
